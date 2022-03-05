@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="shortcut icon" href="books.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h2 class="title-logo">odin-library</h2>
+        </div>
+    </header>
+    <div class="container alert-container">
+        
+    </div>
+    <div class="btn-container container">
+        <button class="add-book" data-bs-toggle="modal" data-bs-target="#Modal">+ Add Button +</button>
+    </div>
+    <div class="main container">
+    </div>
+
+    <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="ModalLabel">Add New Book</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="add-book-form" id="addBookForm">
+                    <input type="text" name="title" id="title" placeholder="Title" required>
+                    <input type="text" name="author" id="author" placeholder="Author" required>
+                    <input type="number" name="page" id="page" placeholder="Page" max="1500" required>
+                    
+                    <div class="isReadCon">
+                        <label for="isRead">Have you read it?</label>
+                        <input type="checkbox" class="checkbox" id="isRead">
+                    </div>
+
+                    <button type="submit" class="btn submitBtn" data-bs-dismiss="modal">Add</button>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
