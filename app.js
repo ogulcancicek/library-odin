@@ -1,32 +1,51 @@
-let myLibrary = [];
-
-function Book(title,author,page,isRead){
-    this.title = title;
-    this.author = author;
-    this.page = page;
-    this.isRead = isRead;
-}
-
-
 const addBtn = document.querySelector(".add-book");
 const addBookForm = document.querySelector("#addBookForm");
 const submitBtn = addBookForm.querySelector(".submitBtn");
 const mainContainer = document.querySelector(".main");
 const alertContainer = document.querySelector(".alert-container");
 
+class Book {
+
+    constructor(title, author, page, isRead){
+        this.title = title;
+        this.author = author;
+        this.page = page;
+        this.isRead = isRead;
+    }
+
+}
+
+class Library {
+
+    constructor(){
+        this.library = [];
+    }
+
+    addBook(newBook){
+        if(!this.library.some((book) => book.title ===  newBook.title)){
+            this.library.push(newBook);
+            return true;
+        }
+        return false;
+    }
+
+    removeBook(bookTitle){
+        for (let book of this.library){
+            if(book.title === bookTitle){
+                this.library.pop(book);
+                break
+            }
+        }
+    }
+
+}
+
+const library = new Library();
 
 addBtn.addEventListener("click", () => {
     addBookForm.reset();
 })
 addBookForm.onsubmit = addBook;
-
-function addBookToLibrary(newBook){
-    if(!myLibrary.some((book) => book.title ===  newBook.title)){
-        myLibrary.unshift(newBook);
-        return true;
-    }
-    return false;
-}
 
 const getFromInput = (e) => {
     const title = document.getElementById("title").value;
@@ -40,7 +59,7 @@ const getFromInput = (e) => {
 function addBook (e){
     e.preventDefault();
     const newBook = getFromInput();
-    let success = addBookToLibrary(newBook);
+    let success = library.addBook(newBook);
     if(success){
         createNewBookContainer(newBook);
     }else{
@@ -83,22 +102,14 @@ function createNewBookContainer(newBook){
     
     div.classList.add("book-con");
     div.appendChild(uList);
-    mainContainer.prepend(div);
-
-    
+    mainContainer.prepend(div);    
 }
 
 function removeBook(e){
     const uList = e.target.parentNode.parentNode;
     const bookTitle = uList.firstChild.textContent.slice(8,);
     
-    for (let book of myLibrary){
-        if(book.title === bookTitle){
-            myLibrary.pop(book);
-            break
-        }
-    }
-
+    library.removeBook(bookTitle);
     removeDisplay(bookTitle);
 }
 
@@ -111,7 +122,7 @@ function changeStatus(e){
     const uList = e.target.parentNode.parentNode;
     const bookTitle = uList.firstChild.textContent.slice(8,);
     
-    for (let book of myLibrary){
+    for (let book of library.library){
         if(book.title === bookTitle){
             let status = book.isRead;
             book.isRead = !status;
